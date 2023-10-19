@@ -1,0 +1,23 @@
+<h1>Perfil del Usuario</h1>
+<p style="color: red">{{error}}</p>
+
+
+<div>
+   {{#if userRole}}
+        <div>
+            {{#if userFirst_Name}}
+                    <P>Nombre: {{userFirst_Name}}</P>
+                    <p>Apellido: {{userLast_Name}}</p>
+                    <p>Edad: {{userAge}}</p>
+                    <p>Email: {{userEmail}}</p>
+                    <p>Rol: {{userRole}}</p>
+                {{else}}
+                    <p>Email: {{userEmail}} </p>
+                    <p>Rol: {{userRole}}</p>
+       
+            {{/if}}
+        </div>
+    {{/if}}
+</div>
+
+<a href="api/sessions/logout">Cerrar Sesion</a>

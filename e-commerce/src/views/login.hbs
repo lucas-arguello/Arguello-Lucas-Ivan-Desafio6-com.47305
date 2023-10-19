@@ -1,0 +1,25 @@
+<h1>Login de Usuarios / administrador</h1>
+
+<p style="color: green">{{message}}</p>
+
+<p style="color: red">{{error}}</p>
+
+
+
+<form action="/api/sessions/login" method="post">
+    
+    <label for="email">Correo electronico:</label>
+    <br>
+    <input type="email" name="email" placeholder="Email">
+    <br><br>
+
+    <label for="password">Contraseña:</label>
+    <br>
+    <input type="password" name="password" placeholder="Contraseña"><br><br>
+
+
+    <button>Iniciar Sesión</button>
+
+    <p>No tienes una cuenta? Registrate <a href="/register">aqui</a></p>
+
+</form>
