@@ -1,7 +1,7 @@
 import {Router} from "express";//importamos "routes" desde la libreria de express
-//import { productsService } from "../dao/index.js";
-import { productsServiceMongo } from "../dao/index.js";
-import { cartsServiceMongo } from "../dao/index.js";
+
+import { productsServiceMongo,cartsServiceMongo } from "../dao/index.js";
+
 
 const router = Router();
 

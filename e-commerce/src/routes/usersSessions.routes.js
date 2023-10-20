@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
             }
             //verifico usuario y contrasena coincida con las de la base
             if(user.password !== loginUser.password) {
-                return res.render('login', {errorLogin: 'Credenciles invalidas'});
+                return res.render('login', {error: 'Credenciles invalidas'});
             }
             //si todo es ok 
             req.session.first_name = user.first_name;

@@ -25,6 +25,8 @@ const app = express(); //creamos el servidor. Aca tenemos todas las funcionalida
 
 //middleware para hacer accesible la carpeta "public" para todo el proyecto.
 app.use(express.static(path.join(__dirname,"/public")));
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 
 //configuramos websockets del lado del servidor (backend), vinculando el servidor http con el servidor de websocket.
 //servidor de http
@@ -42,8 +44,16 @@ app.engine('hbs', engine({extname:'.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname,'/views') ); 
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+//configuracion de session
+app.use(session ({
+    store: MongoStore.create({
+        ttl: 60,
+        mongoUrl: 'mongodb+srv://lucas5ivan:Lucas2251Atlas@lia2251.dc33gap.mongodb.net/Muebleria?retryWrites=true&w=majority'
+    }),
+    secret: 'secretSessions',
+    resave: true,
+    saveUninitialized: true
+}))
 
 //vinculamos las rutas con nuestro servidor con el metodo "use". Son "Middlewares", son funciones intermadiarias.
 app.use(viewsRouter); //contiene rutas de tipo GET, porque son las que van a utilizar los usuarios en el navegador.
@@ -126,13 +136,4 @@ io.on("connection", async (socket)=> {
 
 });
 
-//configuracion de session
-app.use(session ({
-    store: MongoStore.create({
-        ttl: 60,
-        mongoUrl: 'mongodb+srv://lucas5ivan:Lucas2251Atlas@lia2251.dc33gap.mongodb.net/Muebleria?retryWrites=true&w=majority'
-    }),
-    secret: 'secretSessions',
-    resave: true,
-    saveUninitialized: true
-}))
+
